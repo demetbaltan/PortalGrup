@@ -1,0 +1,46 @@
+﻿@model Entities.Dtos.CustomerDtos.CustomerDto
+
+@{
+    ViewData["Title"] = "Müşteri Sil";
+}
+
+<div class="text-left">
+    <form asp-action="Delete" asp-controller="Customer">
+        <input type="hidden" asp-for="Id" />
+        <div class="col-lg-12">
+            <label asp-for="GovernmentId" class="col-lg-4 col-form-label text-lg-start"></label>
+            <input type="number" asp-for="GovernmentId" disabled maxlength="11" max="99999999999" class="form-control form-control-lg form-control-solid" autocomplete="off" />
+        </div>
+        <div class="col-lg-12">
+            <label asp-for="Name" class="col-lg-4 col-form-label text-lg-start"></label>
+            <input type="text" asp-for="Name" disabled maxlength="100" class="form-control form-control-lg form-control-solid" autocomplete="off" />
+        </div>
+        <div class="col-lg-12">
+            <label asp-for="Surname" class="col-lg-4 col-form-label text-lg-start"></label>
+            <input type="text" asp-for="Surname" disabled maxlength="100" class="form-control form-control-lg form-control-solid" autocomplete="off" />
+        </div>
+        <div class="col-lg-12">
+            <label asp-for="BirthYear" class="col-lg-4 col-form-label text-lg-start"></label>
+            <select asp-for="BirthYear" asp-items="ViewBag.BirthYears" disabled aria-label="Doğum Tarihi Yılı Seçiniz" data-control="select2" data-placeholder="Doğum Tarihi Yılı Seçiniz..." class="form-select form-select-solid form-select-lg">
+                <option value="">Doğum Tarihi Yılı Seçiniz...</option>
+            </select>
+        </div>
+        <div class="col-lg-12">
+            <label asp-for="ApplicationId" class="col-lg-4 col-form-label text-lg-start"></label>
+            <select asp-for="ApplicationId" asp-items="ViewBag.Applications" disabled aria-label="Uygulama Seçiniz" data-control="select2" data-placeholder="Uygulama Seçiniz..." class="form-select form-select-solid form-select-lg">
+                <option value="">Uygulama Seçiniz...</option>
+            </select>
+        </div>
+        <div class="col-lg-12 mt-4">
+            <a asp-action="Index" asp-controller="Customer" class="btn btn-outline-secondary">İptal</a>
+            <button type="submit" class="btn btn-danger">Sil</button>
+        </div>
+
+    </form>
+    @if (Model is not null && !string.IsNullOrEmpty(Model.ErrorMessage))
+    {
+        <div class="col-lg-12 alert alert-danger mt-3">
+            @Model?.ErrorMessage
+        </div>
+    }
+</div>

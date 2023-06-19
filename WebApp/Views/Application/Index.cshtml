@@ -1,0 +1,38 @@
+﻿@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+@model IEnumerable<Entities.Concrete.ApplicationClasses.Application>
+
+<div class="text-end">
+    <a asp-action="Create" asp-controller="Application" class="btn btn-warning mb-3">Uygulama Ekle</a>
+</div>
+<div class="text-start">
+    <h2 class="mb-3 mt-3 fw-bolder">Uygulama Listesi<hr /></h2>
+</div>
+<div class="text-center">
+    <table class="table-responsive table table-hover">
+        <thead>
+            <tr>
+                <th>Uygulama Adı</th>
+                <th>Nvi Kontrol</th>
+                <th>İşlem</th>
+            </tr>
+        </thead>
+        <tbody>
+            @if (Model.Any())
+            {
+                foreach (var item in Model)
+                {
+                    <tr>
+                        <td>@item.Name</td>
+                        <td>
+                            <div class="badge bg-@(item.IsNviActive ? "success" : "danger") fw-bold">@(item.IsNviActive ? "Aktif" : "Pasif")</div>
+                        </td>
+                        <td>
+                            <a asp-action="Edit" asp-route-id="@item.Id" asp-controller="Application" title="Düzenle" class="btn btn-primary">Düzenle </a>
+                            <a asp-action="Delete" asp-route-id="@item.Id" asp-controller="Application" title="Sil" class="btn btn-danger"> Sil </a>
+                        </td>
+                    </tr>
+                }
+            }
+        </tbody>
+    </table>
+</div>
